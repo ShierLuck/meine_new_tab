@@ -21,7 +21,7 @@ $(document).ready(function() {
             type: "post",
             data: data
         }).done(function (result) {
-          var param = { is_ajax: true, };
+          // var param = { is_ajax: true, };
           setShigoto(param);
         }).fail();
     });
