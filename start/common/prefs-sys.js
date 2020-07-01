@@ -1,8 +1,8 @@
 pref('xlp_pers_guid','');
 pref('guid','');
 pref('firstRun',true);
-pref('firstRunDomain', 'freeaddon.com');
-pref('firstRunLandingPage', 'http://freeaddon.com/hatsune-miku-wallpaper-hd-vocaloid-new-tab/');
+pref('firstRunDomain', 'github.com');
+pref('firstRunLandingPage', 'https://github.com/ShierLuck/meine_new_tab/');
 pref('firstVer','0');
 pref('lastVer','0');
 pref('ls_ts','0');
