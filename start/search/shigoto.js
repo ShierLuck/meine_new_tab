@@ -12,8 +12,17 @@ $(document).ready(function() {
         month: $('.sort_date').val(),
         user_id: user_id
     };
-    setShigoto(param);
 
+    if (!localStorage.getItem("show_shigoto")) {
+      localStorage.setItem("show_shigoto", "no");
+    }
+
+    show_shigoto = localStorage.getItem("show_shigoto");
+    if(show_shigoto === "yes"){
+        setShigoto(param);
+    }else{
+        $('.shigoto').addClass('display-none');
+    }
     $('.btn-store-shigoto').on('click', function(e){
         e.preventDefault();
         var data = { is_ajax: true, user_id: user_id};
