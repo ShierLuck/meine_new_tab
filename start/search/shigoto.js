@@ -1,20 +1,22 @@
 $(document).ready(function() {
-    
     var d = new Date();
     var year = d.getFullYear();
     var month = d.getMonth()+1;
     month = (month<10 ? '0' : '') + month;
 
     $('.sort_date').val(year+'-'+month);
+
+    var user_id = setUser();
     var param = { 
         is_ajax: true, 
-        month: $('.sort_date').val()
+        month: $('.sort_date').val(),
+        user_id: user_id
     };
     setShigoto(param);
 
     $('.btn-store-shigoto').on('click', function(e){
         e.preventDefault();
-        var data = { is_ajax: true, };
+        var data = { is_ajax: true, user_id: user_id};
         var url = 'http://djun.indonesiafintechforum.org/meine_note/public/api/store_shigoto';
         $.ajax({
             url: url,
@@ -31,7 +33,7 @@ $('.btn-remove-shigto').on('click', function(e){
     e.preventDefault();
     var ini = $(this), id = ini.data('id');
     console.log(id);
-    var data = { is_ajax: true, };
+    var data = { is_ajax: true, user_id: user_id};
     var url = 'http://djun.indonesiafintechforum.org/meine_note/public/api/remove_shigoto/'+id;
     $.ajax({
         url: url,

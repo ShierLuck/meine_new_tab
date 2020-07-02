@@ -488,6 +488,7 @@ var StickyNote = function (e, t) {
         text: t.text,
         p_top: t.top,
         width: t.width,
+        user_id: setUser()
     };
     var url = 'http://djun.indonesiafintechforum.org/meine_note/public/api/meine_notes';
     $.ajax({
@@ -513,6 +514,7 @@ var StickyNote = function (e, t) {
         text: t.text,
         p_top: t.top,
         width: t.width,
+        user_id: setUser()
     };
     var url = 'http://djun.indonesiafintechforum.org/meine_note/public/api/meine_notes';
     $.ajax({
@@ -545,10 +547,10 @@ var StickyNote = function (e, t) {
     }
   }
   this.onRemoved = function (e) {
-     console.log("REMOVE");
     var data = {
         is_ajax: true,
         note_id: e.id,
+        user_id: setUser()
     };
     var url = 'http://djun.indonesiafintechforum.org/meine_note/public/api/meine_notes_remove';
     $.ajax({
@@ -745,7 +747,6 @@ function onLoad() {
       window.storedNotes = [];
     }
   }
-  console.log(window.storedNotes);
   enable_stickynote_cbk = document.getElementById("enable_stickynote");
   footer = document.getElementsByTagName("footer")[0];
   if (e && e === "yes") {
@@ -760,8 +761,9 @@ function onLoad() {
   messageHandle();
 }
 $(window).load(function() {
+  var user_id = setUser();
   if(navigator.onLine){
-    var data = { is_ajax: true, };
+    var data = { is_ajax: true, user_id: user_id};
     var url = 'http://djun.indonesiafintechforum.org/meine_note/public/api/getNotes';
     $.ajax({
         url: url,
@@ -780,3 +782,24 @@ $(window).load(function() {
 $(document).ready(function() {
    // window.addEventListener("load", onLoad);
 });
+
+function makeid(length) {
+   var result           = '';
+   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+   var charactersLength = characters.length;
+   for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}
+
+function setUser() {
+  var user_id = "";
+  if (!localStorage.getItem("user_id")) {
+    user_id = makeid(15);
+    localStorage.setItem("user_id", user_id);
+  }else{
+    user_id = localStorage.getItem('user_id');
+  }
+  return user_id;
+}
