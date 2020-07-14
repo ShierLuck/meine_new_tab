@@ -59,10 +59,32 @@ $('.sort_date').on('change', function(e){
     
     var param = { 
         is_ajax: true, 
-        month: month
+        month: month,
+        user_id: setUser()
     };
     setShigoto(param);
     
+});
+$(".shigoto").delegate(".shigoto_note", "change", function(e){
+// $('.shigoto_note').delegate('change', function(e){
+    e.preventDefault();
+    var ini = $(this), id = ini.data('id'), note = ini.val();
+
+    var param = { 
+        is_ajax: true, 
+        id: id,
+        note: note
+    };
+    var url = 'http://djun.indonesiafintechforum.org/meine_note/public/api/shigotoNote';
+    $.ajax({
+        url: url,
+        type: "post",
+        data: param
+    }).done(function (result) {
+      if(result.status){
+        
+      }
+    }).fail(); 
 });
 
 function setShigoto(data) {
@@ -77,6 +99,7 @@ function setShigoto(data) {
         datas = result.data;
         var naka = "";
         $.each(datas, function( index, value ) {
+            
             naka += "<tr>"+
                         "<td>"+
                             datas[index].id +
@@ -88,13 +111,26 @@ function setShigoto(data) {
                             datas[index].check_out +
                         "</td>"+
                         "<td>"+
-                            "<button class='btn btn-remove-shigto' data-id='" +
-                                datas[index].id +
-                            "'>DEL</button>" +
+                            datas[index].time_diff +
+                        "</td>"+
+                        "<td>"+
+                            "<textarea rows='1' class='shigoto_note' style='color:black !important;' data-id='" +datas[index].id +"'>" +
+                            datas[index].note +
+                            "</textarea>"+
                         "</td>"+
                     "</tr>";
         });
         t_body.html(naka);
       }
     }).fail();
+}
+
+function getTimeDiff(in_t, out) {
+    var diffMs = (in_t - out); // milliseconds between now & Christmas
+    var diffDays = Math.floor(diffMs / 86400000); // days
+    var diffHrs = Math.floor((diffMs % 86400000) / 3600000); // hours
+    var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+    var time_length = diffDays + " days, " + diffHrs + " hours, " + diffMins + " minutes)";
+
+    return time_length;
 }
