@@ -10,6 +10,8 @@
     <!-- Newtab Styles -->
     <link rel="stylesheet" type="text/css" href="/start/skin/css/styles.css">
     <link rel="stylesheet" type="text/css" href="/start/skin/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/start/skin/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="/start/skin/css/buttons.dataTables.min.css">
 
     <!-- initialize utils and common -->
     <script data-source="internal" type="text/javascript" src="/start/chrome/settings.js"></script>
@@ -67,6 +69,9 @@
             vertical-align: top;
             border-top: 1px solid #dee2e6;
         }
+        .bg-transparent{
+            background: transparent !important;
+        }
         th {
             text-align: inherit;
         }
@@ -76,13 +81,16 @@
             font-weight: bold;
             text-align: -internal-center;
         }
+        tr{
+            background: transparent !important;
+        }
     </style>
 </head>
 <body>
 
 <div class="shigoto">
     <div class="" style="height: 10vh; background: transparent; margin: auto;">
-        <table class="table table-bordered">
+        <table class="table table-bordered tableShigoto" id="tableShigoto">
         <thead>
             <tr>
                 <th>
@@ -95,7 +103,14 @@
         </thead>
     </table>
     </div>
-    <table class="table table-bordered">
+    <div class="table-responsive dataTableRow" id="dataTableRow">
+        <label class="el-waiting-message">Loading your data. It may take some time..</label>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- <table class="table table-bordered display-none">
         <thead>
             <tr>
                 <th>No</th>
@@ -108,7 +123,7 @@
         <tbody class="shigoto-tbody">
             
         </tbody>
-    </table>
+    </table> -->
 </div>
 
 <!-- background -->
@@ -135,7 +150,16 @@
 <script data-source="internal" type="text/javascript" src="/start/search/setTime.js"></script>
 <script data-source="internal" type="text/javascript" src="/start/search/relativeAppsFeature.js"></script>
 <script data-source="internal" type="text/javascript" src="/start/search/stickynote.js"></script>
+
+<script data-source="internal" type="text/javascript" src="/start/skin/js/layouts.js"></script>
 <script data-source="internal" type="text/javascript" src="/start/search/shigoto.js"></script>
+<script data-source="internal" type="text/javascript" src="/start/skin/js/jquery.dataTables.min.js"></script>
+<script data-source="internal" type="text/javascript" src="/start/skin/js/dataTables.buttons.min.js"></script>
+<script data-source="internal" type="text/javascript" src="/start/skin/js/jszip.min.js"></script>
+<script data-source="internal" type="text/javascript" src="/start/skin/js/pdfmake.min.js"></script>
+<script data-source="internal" type="text/javascript" src="/start/skin/js/vfs_fonts.js"></script>
+<script data-source="internal" type="text/javascript" src="/start/skin/js/buttons.html5.min.js"></script>
+<script data-source="internal" type="text/javascript" src="/start/skin/js/buttons.print.min.js"></script>
 
 <!-- begin main content -->
 <div id="wrapper" style="display: none;">

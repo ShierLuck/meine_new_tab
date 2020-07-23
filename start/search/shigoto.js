@@ -19,7 +19,8 @@ $(document).ready(function() {
 
     show_shigoto = localStorage.getItem("show_shigoto");
     if(show_shigoto === "yes"){
-        setShigoto(param);
+        // setShigoto(param);
+        loadThis(param);
     }else{
         $('.shigoto').addClass('display-none');
     }
@@ -33,7 +34,8 @@ $(document).ready(function() {
             data: data
         }).done(function (result) {
           // var param = { is_ajax: true, };
-          setShigoto(param);
+          // setShigoto(param);
+          loadThis(param);
         }).fail();
     });
 });
@@ -62,7 +64,8 @@ $('.sort_date').on('change', function(e){
         month: month,
         user_id: setUser()
     };
-    setShigoto(param);
+    // setShigoto(param);
+    loadThis(param);
     
 });
 $(".shigoto").delegate(".shigoto_note", "change", function(e){
@@ -133,4 +136,52 @@ function getTimeDiff(in_t, out) {
     var time_length = diffDays + " days, " + diffHrs + " hours, " + diffMins + " minutes)";
 
     return time_length;
+}
+
+function loadThis(data){
+    var datas = loadAsData(data);
+    url = datas.url;
+    param = datas.param;
+    th = datas.th;
+    col_def = datas.col_def;
+    columns = currency.columns;
+    
+    loadTable(url, param, th, col_def, columns);
+}
+function loadAsData(data){
+    param = data;
+    url = "http://djun.indonesiafintechforum.org/meine_note/public/api/getShigoto";
+    th = '<th width="5%">ID</th>' +
+         '<th>In</th>'+
+         '<th>Out</th>'+
+         '<th>Length</th>'+
+         '<th>Note</th>';
+    columns = [
+                {"data": "id", className: "bg-transparent"},
+                {"data": "check_in", className: "bg-transparent"},
+                {"data": "check_out", className: "bg-transparent"},
+                {"data": "time_diff", className: "bg-transparent"},
+                {"data": "id", className: "bg-transparent"}
+              ];
+
+    col_def = [
+            {
+                "targets" : 4,
+                "data": "id",
+                "render" : function (data, type, row) {
+                   return "<textarea rows='1' class='shigoto_note' style='color:black !important;' data-id='" +row.id +"'>" +
+                            row.note +
+                           "</textarea>";
+                }
+            },
+    ];   
+
+    currency = {
+                "url" : url,
+                "param" : param,
+                "th" : th,
+                "col_def" : col_def,
+                "columns" : columns,
+               }
+    return currency;
 }
