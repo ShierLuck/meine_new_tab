@@ -32,6 +32,10 @@
         .display-none{
             display: none !important;
         }
+        .white_bold{
+            color: white;
+            font-weight: bolder;
+        }
         .shigoto{
             position: fixed;
             top: 15vh;
@@ -90,18 +94,19 @@
 
 <div class="shigoto">
     <div class="" style="height: 10vh; background: transparent; margin: auto;">
+        <input type="file" name="attachment_file" class="attachment_file" id="attachment_file" hidden>
         <table class="table table-bordered tableShigoto" id="tableShigoto">
-        <thead>
-            <tr>
-                <th>
-                    <input type="month" name="sort_date" class="sort_date">
-                </th>
-                <th>
-                    <button class="btn btn-store-shigoto">Store</button>
-                </th>
-            </tr>
-        </thead>
-    </table>
+            <thead>
+                <tr>
+                    <th>
+                        <input type="month" name="sort_date" class="sort_date">
+                    </th>
+                    <th>
+                        <button class="btn btn-store-shigoto">Store</button>
+                    </th>
+                </tr>
+            </thead>
+        </table>
     </div>
     <div class="table-responsive dataTableRow" id="dataTableRow">
         <label class="el-waiting-message">Loading your data. It may take some time..</label>

@@ -734,7 +734,8 @@ function onLoad() {
   var t = localStorage.getItem("notes");
   // console.log(JSON.parse(t));
   if(!get_data.length){
-    notes = JSON.parse(t);
+    // notes = JSON.parse(t);
+    notes = "";
   }else{
     notes = get_data;
   }
