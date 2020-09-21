@@ -243,8 +243,8 @@ function loadAsData(data){
                     var datas = row.attachments;
                     $.each(datas, function( index, value ) {
                         naka += "<li style='margin-top:3px'>"+
-                                    "<a href='http://djun.indonesiafintechforum.org/meine_note/public/"+value.attachment_link +"' target='new' class='white_bold'>"+
-                                        value.attachment
+                                    "<a href='http://djun.indonesiafintechforum.org/meine_note/public"+value.attachment_link +"' target='new' class='white_bold'>"+
+                                        "http://djun.indonesiafintechforum.org/meine_note/public" + value.attachment_link +
                                     "</a>"+
                                 "</li>";
                     });
