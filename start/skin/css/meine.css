@@ -1,0 +1,84 @@
+textarea{
+    color: white !important;
+}
+.left-nav a{
+    display: none !important;
+}
+.left-nav div a{
+    display: block !important;
+}
+.display-none{
+    display: none !important;
+}
+.white_bold{
+    color: white;
+    font-weight: bolder;
+}
+.shigoto{
+    position: fixed;
+    top: 9vh;
+    bottom: 5vh;
+    left: 0;
+    background: #010f4278;
+    color: white;
+    font-weight: bold;
+    width: 22vw;
+    overflow: auto;
+    resize: both;
+}
+.meine_conf{
+    position: fixed;
+    top: 10vh;
+    bottom: 5vh;
+    right: 0;
+    background: #010f4278;
+    color: white;
+    font-weight: bold;
+    width: 22vw;
+    overflow: auto;
+    /*resize: both;*/
+}
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    border-collapse: collapse;
+    display: table;
+}
+.table-bordered thead td, .table-bordered thead th {
+    border-bottom-width: 2px;
+}
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+.table-bordered td, .table-bordered th {
+    border: 1px solid #dee2e6;
+}
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+.bg-transparent{
+    background: transparent !important;
+}
+th {
+    text-align: inherit;
+}
+th {
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: bold;
+    text-align: -internal-center;
+}
+tr{
+    background: transparent !important;
+}
+#data-table-data{
+    width: '' !important;
+}

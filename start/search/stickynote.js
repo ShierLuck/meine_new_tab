@@ -130,7 +130,14 @@ window.storedNotes = [];
 //   white: { title: "#f5f5f5", body: "#ececec" }
 // };
 window.noteColors = {
-  blue: { title: "#051f56bf", body: "#051f56bf" }
+  "blue": { title: "#051f56bf", body: "#051f56bf" },
+  "light blue": { title: "#5490cfbd", body: "#5490cfbd" },
+  "purple": { title: "#715480b3", body: "#715480b3" },
+  "light purple": { title: "#e3cbccb3", body: "#e3cbccb3" },
+  "pink": { title: "#d40a87a1", body: "#d40a87a1" },
+  "solid blue": { title: "#c9ecf8", body: "#c0e1f5" },
+  "solid green": { title: "#c8f8c3", body: "#A3ED9B" },
+  "solid purple": { title: "#f1c3f1", body: "#ecb2ec" },
 };
 var noteContainer = null,
   stnButtonWrapper = null,
@@ -490,7 +497,7 @@ var StickyNote = function (e, t) {
         width: t.width,
         user_id: setUser()
     };
-    var url = 'http://djun.indonesiafintechforum.org/meine_note/public/api/meine_notes';
+    var url = 'http://djun.udadeveloper.com/meine_note/public/api/meine_notes';
     $.ajax({
         url: url,
         type: "post",
@@ -516,7 +523,7 @@ var StickyNote = function (e, t) {
         width: t.width,
         user_id: setUser()
     };
-    var url = 'http://djun.indonesiafintechforum.org/meine_note/public/api/meine_notes';
+    var url = 'http://djun.udadeveloper.com/meine_note/public/api/meine_notes';
     $.ajax({
         url: url,
         type: "post",
@@ -532,6 +539,27 @@ var StickyNote = function (e, t) {
     syncNote(0, e);
   };
   this.onColorChange = function (e) {
+    var data = {
+        is_ajax: true,
+        note_id: e.id,
+        color: e.color,
+        height: e.height,
+        p_left: e.left,
+        text: e.text,
+        p_top: e.top,
+        width: e.width,
+        user_id: setUser()
+    };
+    var url = 'http://djun.udadeveloper.com/meine_note/public/api/meine_notes';
+    $.ajax({
+        url: url,
+        type: "post",
+        data: data
+    }).done(function (result) {
+      
+    }).fail(
+      // console.log('FAILED')
+    );
     syncNote(0, e);
   };
   function b(e) {
@@ -552,7 +580,7 @@ var StickyNote = function (e, t) {
         note_id: e.id,
         user_id: setUser()
     };
-    var url = 'http://djun.indonesiafintechforum.org/meine_note/public/api/meine_notes_remove';
+    var url = 'http://djun.udadeveloper.com/meine_note/public/api/meine_notes_remove';
     $.ajax({
         url: url,
         type: "post",
@@ -765,7 +793,7 @@ $(window).load(function() {
   var user_id = setUser();
   if(navigator.onLine){
     var data = { is_ajax: true, user_id: user_id};
-    var url = 'http://djun.indonesiafintechforum.org/meine_note/public/api/getNotes';
+    var url = 'http://djun.udadeveloper.com/meine_note/public/api/getNotes';
     $.ajax({
         url: url,
         type: "post",

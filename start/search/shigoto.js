@@ -27,7 +27,7 @@ $(document).ready(function() {
     $('.btn-store-shigoto').on('click', function(e){
         e.preventDefault();
         var data = { is_ajax: true, user_id: user_id};
-        var url = 'http://djun.indonesiafintechforum.org/meine_note/public/api/store_shigoto';
+        var url = 'http://djun.udadeveloper.com/meine_note/public/api/store_shigoto';
         $.ajax({
             url: url,
             type: "post",
@@ -38,6 +38,29 @@ $(document).ready(function() {
           loadThis(param);
         }).fail();
     });
+    var d_notes = "SHOW";
+    $("#hide_notes").on('click', function(e){
+        e.preventDefault();
+        var ini = $("#hide_notes");
+            notes = $('.sticky-note');
+            status = d_notes;
+        if(status === "SHOW"){
+            notes.removeClass('display-none');
+            d_notes = "HIDE";
+            ini.html('Hide Notes');
+            console.log('1')
+        }else if(status === "HIDE"){
+            notes.addClass('display-none');
+            d_notes = "SHOW";
+            ini.html('Show Notes');
+            console.log('2')
+        }else{
+            notes.addClass('display-none');
+            d_notes = "SHOW";
+            ini.html('Show Notes');
+            console.log('3')
+        }
+    });
 });
 
 $('.btn-remove-shigto').on('click', function(e){
@@ -45,7 +68,7 @@ $('.btn-remove-shigto').on('click', function(e){
     var ini = $(this), id = ini.data('id');
     console.log(id);
     var data = { is_ajax: true, user_id: user_id};
-    var url = 'http://djun.indonesiafintechforum.org/meine_note/public/api/remove_shigoto/'+id;
+    var url = 'http://djun.udadeveloper.com/meine_note/public/api/remove_shigoto/'+id;
     $.ajax({
         url: url,
         type: "post",
@@ -78,7 +101,7 @@ $(".shigoto").delegate(".shigoto_note", "change", function(e){
         id: id,
         note: note
     };
-    var url = 'http://djun.indonesiafintechforum.org/meine_note/public/api/shigotoNote';
+    var url = 'http://djun.udadeveloper.com/meine_note/public/api/shigotoNote';
     $.ajax({
         url: url,
         type: "post",
@@ -115,7 +138,7 @@ $("#attachment_file").on("change", function(e){
     };
 });
 function postAttachment(data) {
-    var url = 'http://djun.indonesiafintechforum.org/meine_note/public/api/new_attachment';
+    var url = 'http://djun.udadeveloper.com/meine_note/public/api/new_attachment';
     $.ajax({
         url: url,
         type: "post",
@@ -151,7 +174,7 @@ function ajax_fail(xhr, err) {
 }
 function setShigoto(data) {
     var t_body = $('.shigoto-tbody');
-    var url = 'http://djun.indonesiafintechforum.org/meine_note/public/api/getShigoto';
+    var url = 'http://djun.udadeveloper.com/meine_note/public/api/getShigoto';
     $.ajax({
         url: url,
         type: "post",
@@ -209,20 +232,20 @@ function loadThis(data){
 }
 function loadAsData(data){
     param = data;
-    url = "http://djun.indonesiafintechforum.org/meine_note/public/api/getShigoto";
+    url = "http://djun.udadeveloper.com/meine_note/public/api/getShigoto";
     th = '<th width="5%">ID</th>' +
          '<th>In</th>'+
          '<th>Out</th>'+
          '<th>Length</th>'+
-         '<th width="250px">Note</th>'+
-         '<th width="350px">Attachment</th>';
+         '<th width="250px">Note</th>';//+
+         // '<th width="350px">Attachment</th>';
     columns = [
                 {"data": "id", className: "bg-transparent"},
                 {"data": "check_in", className: "bg-transparent"},
                 {"data": "check_out", className: "bg-transparent"},
                 {"data": "time_diff", className: "bg-transparent"},
                 {"data": "id", className: "bg-transparent"},
-                {"data": "id", className: "bg-transparent"}
+                // {"data": "id", className: "bg-transparent"}
               ];
 
     col_def = [
@@ -235,28 +258,28 @@ function loadAsData(data){
                            "</textarea>";
                 }
             },
-            {
-                "targets" : 5,
-                "data": "id",
-                "render" : function (data, type, row) {
-                    var naka = "<ul>";
-                    var datas = row.attachments;
-                    $.each(datas, function( index, value ) {
-                        naka += "<li style='margin-top:3px'>"+
-                                    "<a href='http://djun.indonesiafintechforum.org/meine_note/public"+value.attachment_link +"' target='new' class='white_bold'>"+
-                                        "http://djun.indonesiafintechforum.org/meine_note/public" + value.attachment_link +
-                                    "</a>"+
-                                "</li>";
-                    });
-                        naka += "<li style='margin-top:5px'>"+
-                                    "<a href='#' class='add_attachment white_bold' data-id_parent='"+row.id+"'>"+
-                                    "+Add_Attachment"+
-                                    "</a>"+
-                                "</li>";
-                    naka += "</ul>";
-                    return naka;
-                }
-            },
+            // {
+            //     "targets" : 5,
+            //     "data": "id",
+            //     "render" : function (data, type, row) {
+            //         var naka = "<ul>";
+            //         var datas = row.attachments;
+            //         $.each(datas, function( index, value ) {
+            //             naka += "<li style='margin-top:3px'>"+
+            //                         "<a href='http://djun.udadeveloper.com/meine_note/public"+value.attachment_link +"' target='new' class='white_bold'>"+
+            //                             "http://djun.udadeveloper.com/meine_note/public" + value.attachment_link +
+            //                         "</a>"+
+            //                     "</li>";
+            //         });
+            //             naka += "<li style='margin-top:5px'>"+
+            //                         "<a href='#' class='add_attachment white_bold' data-id_parent='"+row.id+"'>"+
+            //                         "+Add_Attachment"+
+            //                         "</a>"+
+            //                     "</li>";
+            //         naka += "</ul>";
+            //         return naka;
+            //     }
+            // },
     ];   
 
     currency = {

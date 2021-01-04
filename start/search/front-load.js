@@ -1,4 +1,11 @@
+var gifs = "[0:'bg-66.gif', 1:'bg-67.gif', 2:'bg-68.gif', 3:'bg-69.gif', 4:'bg-70.gif']";
 (function (e) {
+  if(!localStorage.getItem('bg_color_gif')){
+    localStorage.setItem('bg_color_gif', gifs)
+  }
+  if(localStorage.getItem('bg_color_gif') != gifs){
+    localStorage.setItem('bg_color_gif', gifs)
+  }
   e.listAllThreads = {};
   e.chosenRandomBG = "";
   var t = [],
@@ -80,6 +87,7 @@
     var f = user["bg_color_gif"].indexOf(
       e.replace(/\.jpg$/, ".gif")
     );
+
     if (f > -1) {
       chosenRandomBG = e.replace(/\.jpg$/, ".gif");
       o.style.backgroundImage =
