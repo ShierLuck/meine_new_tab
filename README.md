@@ -3,7 +3,7 @@
 ![alt text](https://github.com/ShierLuck/meine_new_tab/blob/master/meine_new_tab.jpg?raw=true "Meine New Tab")
 
 
-issa chrome extention for chrome
+issan extention for chrome
 
 # How to use
 - Go here chrome://extensions/
