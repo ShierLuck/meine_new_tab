@@ -715,12 +715,12 @@ function loadNotes() {
   }
 }
 function createMenuButton() {
+  return;
   stnButtonWrapper = document.createElement("div");
   stnButtonWrapper.className = "new-note-button-wrapper";
   stnButton = document.createElement("a");
   stnButton.className = "new-note-button";
-  stnButton.innerHTML =
-    window.storedNotes.length > 0 ? "&#128465; Clear Notes" : "+ New note";
+  stnButton.innerHTML = window.storedNotes.length > 0 ? "&#128465; Clear Notes" : "+ New note";
   stnButton.addEventListener("click", function (e) {
     e.preventDefault();
     if (window.storedNotes.length > 0) {
@@ -790,6 +790,10 @@ function onLoad() {
   messageHandle();
 }
 $(window).load(function() {
+  getMeineNotes();
+});
+
+function getMeineNotes(){
   var user_id = setUser();
   if(navigator.onLine){
     var data = { is_ajax: true, user_id: user_id};
@@ -806,7 +810,7 @@ $(window).load(function() {
       }
     }).fail();
   }
-});
+}
 
 $(document).ready(function() {
    // window.addEventListener("load", onLoad);
