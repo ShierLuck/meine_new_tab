@@ -2989,8 +2989,8 @@ input[type="color"]#countdown_text_color::-webkit-color-swatch {
   padding-right: 2px;
   min-width: 200px;
   min-height: 80px;
-  max-width: 800px;
-  max-height: 500px;
+  /*max-width: 800px;*/
+  /*max-height: 500px;*/
   transform: translateZ(0);
 }
 .sticky-note .inner {

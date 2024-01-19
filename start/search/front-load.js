@@ -1,4 +1,4 @@
-var gifs = "[0:'bg-66.gif', 1:'bg-67.gif', 2:'bg-68.gif', 3:'bg-69.gif', 4:'bg-70.gif']";
+var gifs = "[0:'bg-70.gif', 1:'bg-69.gif', 2:'bg-68.gif', 3:'bg-67.gif', 4:'bg-66.gif', 5:'bg-65.gif', , 6:'bg-64.gif', 6:'bg-63.gif', , 7:'bg-62.gif']";
 (function (e) {
   if(!localStorage.getItem('bg_color_gif')){
     localStorage.setItem('bg_color_gif', gifs)

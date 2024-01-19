@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    // $('.meine_id').find('input[name=meine_id]').val(localStorage.getItem("user_id"));
+
     var d = new Date();
     var year = d.getFullYear();
     var month = d.getMonth()+1;
@@ -38,29 +40,56 @@ $(document).ready(function() {
           loadThis(param);
         }).fail();
     });
-    var d_notes = "SHOW";
+    
     $("#hide_notes").on('click', function(e){
         e.preventDefault();
-        var ini = $("#hide_notes");
-            notes = $('.sticky-note');
-            status = d_notes;
-        if(status === "SHOW"){
+        var ini = $("#hide_notes"), notes = $('.sticky-note');
+
+        if(notes.hasClass('display-none')){
             notes.removeClass('display-none');
-            d_notes = "HIDE";
             ini.html('Hide Notes');
-            console.log('1')
-        }else if(status === "HIDE"){
-            notes.addClass('display-none');
-            d_notes = "SHOW";
-            ini.html('Show Notes');
-            console.log('2')
         }else{
             notes.addClass('display-none');
-            d_notes = "SHOW";
             ini.html('Show Notes');
-            console.log('3')
         }
     });
+
+    var ids = JSON.parse(localStorage.getItem("meine_ids")) || [];
+    var options = '';
+    $.each(ids, function(i, v){
+        var selected = '';
+        if(v == localStorage.getItem("user_id")) selected = 'selected';
+        $('select[name=select_meine_id]').append('<option '+selected+'>'+v+'</option>');
+    });
+});
+
+$('.btn-meine-id').on('click', function(e){
+    e.preventDefault();
+    new_id = $('.meine_id').find('input[name=meine_id]').val();
+    console.log(localStorage.getItem("user_id"), new_id);
+    localStorage.setItem('user_id', new_id);
+
+    var ids = JSON.parse(localStorage.getItem("meine_ids")) || [];
+    var new_ids = [];
+    $.each(ids, function(i, v){
+        new_ids.push(v);
+    });
+    if(jQuery.inArray(new_id, new_ids) !== -1){
+
+    }else{
+        new_ids.push(new_id);
+    }
+    localStorage.setItem('meine_ids', JSON.stringify(new_ids));
+    location.reload();
+});
+$('select[name=select_meine_id]').on('change', function(e){
+    e.preventDefault();
+    new_id = $(this).val();
+    console.log(localStorage.getItem("user_id"), new_id);
+    localStorage.setItem('user_id', new_id);
+    
+    if($("#note-container").length) $("#note-container").html('');
+    getMeineNotes()
 });
 
 $('.btn-remove-shigto').on('click', function(e){
